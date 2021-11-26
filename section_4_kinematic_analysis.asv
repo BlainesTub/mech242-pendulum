@@ -39,12 +39,19 @@ position_s = [L*sind(Q0*cos((g^(1/2)*t)/L^(1/2))), -L*cosd(Q0*cos((g^(1/2)*t)/L^
 
 figure(4);
 tiledlayout(3,1)
-nexttile %Theta
-plot(s(:,1),s(:,2),'DisplayName', 'Position')
-plot(t,position_s(1:end))
+nexttile %x-position
+%plot(s(:,1),s(:,2),'DisplayName', 'Position')
+plot(t,position_s(:,1))
 hold on
 title("Simple Pendulum \theta")
-xlabel('time [t]'); ylabel('theta [\theta]');
+xlabel('time [t]'); ylabel('x-position [m]');
+
+nexttile %y-position
+plot(t,position_s(:,2))
+hold on
+title("y-position")
+xlabel('time [t]'); ylabel('y-position [m]');
+
 
 
 

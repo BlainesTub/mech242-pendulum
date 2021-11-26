@@ -1,8 +1,3 @@
-%blaines comment
-
-
-
-
 %Matlab code for section 4, kinematic analysis of 3 pendulums. 
 %Simple, simple rigid body, and compound. Here are the 3 governing DEs
 %Simple Pendulum: Q0*cos((g^(1/2)*t)/L^(1/2))   
@@ -40,7 +35,7 @@ omega_crb = diff(theta_crb);
 alpha_crb = diff(diff(theta_crb));
 
 %4.3 Linear Displacement, Velocity, and Acceleration
-position_s = [L*sind(Q0*cos((g^(1/2)*t)/L^(1/2))), -L*cosd(Q0*cos((g^(1/2)*t)/L^(1/2)))]
+position_s = [L*sind(Q0*cos((g^(1/2).*t)/L^(1/2))), -L*cosd(Q0*cos((g^(1/2).*t)/L^(1/2)))]
 
 figure(4);
 tiledlayout(3,1)
