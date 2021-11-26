@@ -4,6 +4,10 @@
 %Simple Rigid Body Pendulum: Q0*cos((6^(1/2)*g^(1/2)*t)/(2*L^(1/2)))
 %Compound Pendulum: Q0*cos((6^(1/2)*g^(1/2)*t*(m_arm + 2*m_bob)^(1/2)*(m_arm + 3*m_bob)^(1/2))/(L^(1/2)*(2*m_arm + 6*m_bob)))
 
+clear all;%Clears all variables that may be stored in the 'workspace'
+close all;%Closes all plots that may be open
+clc;%Clears command window
+
 startTime = 0;
 endTime = 60;
 dT = 0.1;
@@ -14,20 +18,67 @@ L = 1; %Length of pendulum
 
 t=[startTime:dT:endTime]';
 
-theta = Q0*cos((g^(1/2)*t)/L^(1/2));
-omega = diff(theta);
-alpha = diff(diff(theta));
+% Simple pendulum
+theta_s = Q0*cos((g^(1/2)*t)/L^(1/2));
+omega_s = diff(theta_s);
+alpha_s = diff(diff(theta_s));
 
-figure(1); %Simple Pendulum
-plot(t,theta, alpha'DisplayName', 'Position')
+% Rigid Body
+theta_rb = Q0*cos((6^(1/2)*g^(1/2)*t)/(2*L^(1/2)));
+omega_rb = diff(theta_rb);
+alpha_rb = diff(diff(theta_rb));
+
+
+
+
+
+
+%Generate Simple Pendulum Graphs. theta, omega, alpha
+figure(1);
+tiledlayout(3,1)
+nexttile %Theta
+plot(t,theta_s(1:end))
 hold on
 title("Simple Pendulum")
 legend('Location', 'Southwest')
 xlabel('time [t]'); ylabel('theta [\theta]');
-% 
-% figure(2); %Simple Pendulum
-% plot(t,omega,alpha,'DisplayName', 'Position')
-% hold on
-% title("Simple Pendulum \omega")
-% legend('Location', 'Southwest')
-% xlabel('time [t]'); ylabel('theta [\theta]');
+
+nexttile %Omega
+plot(t(2:end),omega_s) %Must re-index time to accomodate for index lost during differentiation.
+hold on
+title("Simple Pendulum \omega")
+legend('Location', 'Southwest')
+xlabel('time [t]'); ylabel('angular velocity [\omega]');
+
+nexttile
+%Alpha
+plot(t(3:end),alpha_s) %Must re-index time to accomodate for index lost during differentiation.
+hold on
+title("Simple Pendulum \alpha")
+legend('Location', 'Southwest')
+xlabel('time [t]'); ylabel('angular accelerationi [\alpha]');
+
+%Generate Rigid-Body Pendulum Graphs. theta, omega, alpha
+figure(2);
+tiledlayout(3,1)
+nexttile %Theta
+plot(t,theta_rb(1:end))
+hold on
+title("Simple Pendulum")
+legend('Location', 'Southwest')
+xlabel('time [t]'); ylabel('theta [\theta]');
+
+nexttile %Omega
+plot(t(2:end),omega_rb) %Must re-index time to accomodate for index lost during differentiation.
+hold on
+title("Simple Pendulum \omega")
+legend('Location', 'Southwest')
+ ylabel('angular velocity [\omega]');
+
+nexttile
+%Alpha
+plot(t(3:end),alpha_rb) %Must re-index time to accomodate for index lost during differentiation.
+hold on
+title("Simple Pendulum \alpha")
+legend('Location', 'Southwest')
+xlabel('time [t]'); ylabel('angular accelerationi [\alpha]');
