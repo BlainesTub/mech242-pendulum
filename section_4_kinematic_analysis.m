@@ -34,94 +34,72 @@ theta_crb = Q0*cos((6^(1/2)*g^(1/2)*t*(m_arm + 2*m_bob)^(1/2)*(m_arm + 3*m_bob)^
 omega_crb = diff(theta_crb);
 alpha_crb = diff(diff(theta_crb));
 
-%4.3 Linear Displacement, Velocity, and Acceleration
-position_s = [L*sind(Q0*cos((g^(1/2).*t)/L^(1/2))), -L*cosd(Q0*cos((g^(1/2).*t)/L^(1/2)))]
-
-figure(4);
+%Generate Simple Pendulum Graphs. theta, omega, alpha
+figure(1);
 tiledlayout(3,1)
-nexttile %x-position
-%plot(s(:,1),s(:,2),'DisplayName', 'Position')
-plot(t,position_s(:,1))
+nexttile %Theta
+plot(t,theta_s(1:end))
 hold on
 title("Simple Pendulum \theta")
-xlabel('time [t]'); ylabel('x-position [m]');
+xlabel('time [t]'); ylabel('theta [\theta]');
 
-nexttile %y-position
-plot(t,position_s(:,2))
+nexttile %Omega
+plot(t(2:end),omega_s) %Must re-index time to accomodate for index lost during differentiation.
 hold on
-title("y-position")
-xlabel('time [t]'); ylabel('y-position [m]');
+title("Simple Pendulum \omega")
+xlabel('time [t]'); ylabel('angular velocity [\omega]');
+
+nexttile
+%Alpha
+plot(t(3:end),alpha_s) %Must re-index time to accomodate for index lost during differentiation.
+hold on
+title("Simple Pendulum \alpha")
+xlabel('time [t]'); ylabel('angular accelerationi [\alpha]');
+saveas(gcf, '4.2-simple-pendulum.png')
 
 
+%Generate Rigid-Body Pendulum Graphs. theta, omega, alpha
+figure(2);
+tiledlayout(3,1)
+nexttile %Theta
+plot(t,theta_rb(1:end))
+hold on
+title("Rigid-Body Pendulum \theta")
+xlabel('time [t]'); ylabel('theta [\theta]');
 
+nexttile %Omega
+plot(t(2:end),omega_rb) %Must re-index time to accomodate for index lost during differentiation.
+hold on
+title("Rigid-Body Pendulum \omega")
+xlabel('time [t]'); ylabel('angular velocity [\omega]');
 
+nexttile
+%Alpha
+plot(t(3:end),alpha_rb) %Must re-index time to accomodate for index lost during differentiation.
+hold on
+title("Rigid-Body Pendulum \alpha")
+xlabel('time [t]'); ylabel('angular accelerationi [\alpha]');
+saveas(gcf, '4.2-rigid-pendulum.png')
 
-% %Generate Simple Pendulum Graphs. theta, omega, alpha
-% figure(1);
-% tiledlayout(3,1)
-% nexttile %Theta
-% plot(t,theta_s(1:end))
-% hold on
-% title("Simple Pendulum \theta")
-% xlabel('time [t]'); ylabel('theta [\theta]');
-% 
-% nexttile %Omega
-% plot(t(2:end),omega_s) %Must re-index time to accomodate for index lost during differentiation.
-% hold on
-% title("Simple Pendulum \omega")
-% xlabel('time [t]'); ylabel('angular velocity [\omega]');
-% 
-% nexttile
-% %Alpha
-% plot(t(3:end),alpha_s) %Must re-index time to accomodate for index lost during differentiation.
-% hold on
-% title("Simple Pendulum \alpha")
-% xlabel('time [t]'); ylabel('angular accelerationi [\alpha]');
-% saveas(gcf, '4.2-simple-pendulum.png')
-% 
-% 
-% %Generate Rigid-Body Pendulum Graphs. theta, omega, alpha
-% figure(2);
-% tiledlayout(3,1)
-% nexttile %Theta
-% plot(t,theta_rb(1:end))
-% hold on
-% title("Rigid-Body Pendulum \theta")
-% xlabel('time [t]'); ylabel('theta [\theta]');
-% 
-% nexttile %Omega
-% plot(t(2:end),omega_rb) %Must re-index time to accomodate for index lost during differentiation.
-% hold on
-% title("Rigid-Body Pendulum \omega")
-% xlabel('time [t]'); ylabel('angular velocity [\omega]');
-% 
-% nexttile
-% %Alpha
-% plot(t(3:end),alpha_rb) %Must re-index time to accomodate for index lost during differentiation.
-% hold on
-% title("Rigid-Body Pendulum \alpha")
-% xlabel('time [t]'); ylabel('angular accelerationi [\alpha]');
-% saveas(gcf, '4.2-rigid-pendulum.png')
-% 
-% %Generate Compound-Rigid-Body Pendulum Graphs. theta, omega, alpha
-% figure(3);
-% tiledlayout(3,1)
-% nexttile %Theta
-% plot(t,theta_crb(1:end))
-% hold on
-% title("Compound-Rigid-Body Pendulum \theta")
-% xlabel('time [t]'); ylabel('theta [\theta]');
-% 
-% nexttile %Omega
-% plot(t(2:end),omega_crb) %Must re-index time to accomodate for index lost during differentiation.
-% hold on
-% title("Compound-Rigid-Body Pendulum \omega")
-% xlabel('time [t]'); ylabel('angular velocity [\omega]');
-% 
-% nexttile
-% %Alpha
-% plot(t(3:end),alpha_crb) %Must re-index time to accomodate for index lost during differentiation.
-% hold on
-% title("Compound-Rigid-Body Pendulum \alpha")
-% xlabel('time [t]'); ylabel('angular accelerationi [\alpha]');
-% saveas(gcf, '4.2-compound-.png')
+%Generate Compound-Rigid-Body Pendulum Graphs. theta, omega, alpha
+figure(3);
+tiledlayout(3,1)
+nexttile %Theta
+plot(t,theta_crb(1:end))
+hold on
+title("Compound-Rigid-Body Pendulum \theta")
+xlabel('time [t]'); ylabel('theta [\theta]');
+
+nexttile %Omega
+plot(t(2:end),omega_crb) %Must re-index time to accomodate for index lost during differentiation.
+hold on
+title("Compound-Rigid-Body Pendulum \omega")
+xlabel('time [t]'); ylabel('angular velocity [\omega]');
+
+nexttile
+%Alpha
+plot(t(3:end),alpha_crb) %Must re-index time to accomodate for index lost during differentiation.
+hold on
+title("Compound-Rigid-Body Pendulum \alpha")
+xlabel('time [t]'); ylabel('angular accelerationi [\alpha]');
+saveas(gcf, '4.2-compound-.png')

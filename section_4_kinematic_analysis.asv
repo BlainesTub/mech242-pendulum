@@ -35,25 +35,15 @@ omega_crb = diff(theta_crb);
 alpha_crb = diff(diff(theta_crb));
 
 %4.3 Linear Displacement, Velocity, and Acceleration
-position_s = [L*sind(Q0*cos((g^(1/2)*t)/L^(1/2))), -L*cosd(Q0*cos((g^(1/2)*t)/L^(1/2)))]
+% Simple Pendulum
+pos_s = [L*sind(Q0*cos((g^(1/2).*t)/L^(1/2))), -L*cosd(Q0*cos((g^(1/2).*t)/L^(1/2)))];
+vel_s = diff(pos_s);
+accel_s = diff(diff(pos_s));
 
-figure(4);
-tiledlayout(3,1)
-nexttile %x-position
-%plot(s(:,1),s(:,2),'DisplayName', 'Position')
-plot(t,position_s(:,1))
-hold on
-title("Simple Pendulum \theta")
-xlabel('time [t]'); ylabel('x-position [m]');
-
-nexttile %y-position
-plot(t,position_s(:,2))
-hold on
-title("y-position")
-xlabel('time [t]'); ylabel('y-position [m]');
-
-
-
+% Simple Pendulum Rigid Body
+pos_rb = [L*sind(Q0*cos((6^(1/2)*g^(1/2)*t)/(2*L^(1/2)))), -L*cosd(Q0*cos((6^(1/2)*g^(1/2)*t)/(2*L^(1/2))))];
+vel_rb = diff(pos_s);
+accel_rb = diff(diff(pos_s));
 
 
 % %Generate Simple Pendulum Graphs. theta, omega, alpha
@@ -125,3 +115,50 @@ xlabel('time [t]'); ylabel('y-position [m]');
 % title("Compound-Rigid-Body Pendulum \alpha")
 % xlabel('time [t]'); ylabel('angular accelerationi [\alpha]');
 % saveas(gcf, '4.2-compound-.png')
+
+
+
+
+% Cartesian Analysis
+figure(4);
+tiledlayout(3,1)
+nexttile
+title("Simple Pendulum Linear Displacement") %Simple Pendulum, Linear Displacement
+plot(t,pos_s)
+hold on
+xlabel('time [t]'); ylabel('position [m]');
+legend('x-position', 'y-position', 'Location', 'East')
+nexttile
+title("Simple Pendulum Linear Velocity") % Simple pendulum, linear velocity
+plot(t(2:end),vel_s)
+hold on
+xlabel('time [t]'); ylabel('velocity [m/s]');
+legend('x-velocity', 'y-velocity', 'Location', 'East')
+nexttile
+title("Simple Pendulum Linear Acceleration") % Simple pendulum, linear Acceleration
+plot(t(3:end),accel_s)
+hold on
+xlabel('time [t]'); ylabel('acceleration [m/s^2]');
+legend('x-velocity', 'y-acceleration', 'Location', 'East')
+
+% Simple Pendulum, Rigid body
+figure(4);
+tiledlayout(3,1)
+nexttile
+title("Rigid-Body Simple Pendulum Linear Displacement") %Rigid-Body Simple Pendulum, Linear Displacement
+plot(t,pos_rb)
+hold on
+xlabel('time [t]'); ylabel('position [m]');
+legend('x-position', 'y-position', 'Location', 'East')
+nexttile
+title("Rigid-Body Simple Pendulum Linear Velocity") % Rigid-Body Simple pendulum, linear velocity
+plot(t(2:end),vel_s)
+hold on
+xlabel('time [t]'); ylabel('velocity [m/s]');
+legend('x-velocity', 'y-velocity', 'Location', 'East')
+nexttile
+title("Simple Pendulum Linear Acceleration") % Simple pendulum, linear Acceleration
+plot(t(3:end),accel_s)
+hold on
+xlabel('time [t]'); ylabel('acceleration [m/s^2]');
+legend('x-velocity', 'y-acceleration', 'Location', 'East')
