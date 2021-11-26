@@ -11,7 +11,7 @@ clc;%Clears command window
 startTime = 0;
 endTime = 60;
 dT = 0.1;
-
+%Blaines Changes
 g = 9.81; %gravity
 Q0 = 15; %Initial theta
 L = 1 + 0.0762/2; %Length of pendulum + length of bob/2 (length to COM)
