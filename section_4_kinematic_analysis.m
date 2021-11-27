@@ -23,16 +23,16 @@ t=[startTime:dT:endTime]';
 % 4.2 Angular Displacement, Velocity, and Acceleration
 % Simple pendulum
 theta_s = Q0*cos((g^(1/2)*t)/L^(1/2));
-omega_s = diff(theta_s);
-alpha_s = diff(diff(theta_s));
+omega_s = diff(theta_s)/dT;
+alpha_s = diff(diff(theta_s))/dT;
 % Rigid Body
 theta_rb = Q0*cos((6^(1/2)*g^(1/2)*t)/(2*L^(1/2)));
-omega_rb = diff(theta_rb);
-alpha_rb = diff(diff(theta_rb));
+omega_rb = diff(theta_rb)/dT;
+alpha_rb = diff(diff(theta_rb))/dT;
 % Compound Rigid Body
 theta_crb = Q0*cos((6^(1/2)*g^(1/2)*t*(m_arm + 2*m_bob)^(1/2)*(m_arm + 3*m_bob)^(1/2))/(L^(1/2)*(2*m_arm + 6*m_bob)));
-omega_crb = diff(theta_crb);
-alpha_crb = diff(diff(theta_crb));
+omega_crb = diff(theta_crb)/dT;
+alpha_crb = diff(diff(theta_crb))/dT;
 
 %Generate Simple Pendulum Graphs. theta, omega, alpha
 figure(1);

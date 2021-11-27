@@ -23,18 +23,19 @@ t=[startTime:dT:endTime]';
 %4.3 Linear Displacement, Velocity, and Acceleration
 % Simple Pendulum
 pos_s = [L*sind(Q0*cos((g^(1/2).*t)/L^(1/2))), -L*cosd(Q0*cos((g^(1/2).*t)/L^(1/2)))];
-vel_s = diff(pos_s);
-accel_s = diff(diff(pos_s));
+vel_s = diff(pos_s)/dT;
+accel_s = diff(diff(pos_s))/dT;
 
 % Simple Pendulum Rigid Body
 pos_rb = [L*sind(Q0*cos((6^(1/2)*g^(1/2)*t)/(2*L^(1/2)))), -L*cosd(Q0*cos((6^(1/2)*g^(1/2)*t)/(2*L^(1/2))))];
-vel_rb = diff(pos_s);
-accel_rb = diff(diff(pos_s));
+vel_rb = diff(pos_rb)/dT;
+accel_rb = diff(diff(pos_rb))/dT;
 
 % Compound Rigid-Body Pendulum
-pos_crb = [L*sind(Q0*cos((6^(1/2)*g^(1/2)*t*(m_arm + 2*m_bob)^(1/2)*(m_arm + 3*m_bob)^(1/2))/(L^(1/2)*(2*m_arm + 6*m_bob)))), -L*cosd(Q0*cos((6^(1/2)*g^(1/2)*t*(m_arm + 2*m_bob)^(1/2)*(m_arm + 3*m_bob)^(1/2))/(L^(1/2)*(2*m_arm + 6*m_bob))))];
-vel_crb = diff(pos_s);
-accel_crb = diff(diff(pos_s));
+theta_crb = Q0*cos((6^(1/2)*g^(1/2)*t*(m_arm + 2*m_bob)^(1/2)*(m_arm + 3*m_bob)^(1/2))/(L^(1/2)*(2*m_arm + 6*m_bob)));
+pos_crb = [L*sind(theta_crb), -L*cosd(theta_crb)];
+vel_crb = diff(pos_crb)/dT;
+accel_crb = diff(diff(pos_crb))/dT;
 
 % Cartesian Analysis
 figure(4);
