@@ -31,7 +31,7 @@ pos_rb = [L*sind(Q0*cos((6^(1/2)*g^(1/2)*t)/(2*L^(1/2)))), -L*cosd(Q0*cos((6^(1/
 vel_rb = diff(pos_rb)/dT;
 accel_rb = diff(diff(pos_rb)/dT)/dT;
 
-% Compound Rigid-Body Pendulum
+% Compound Rigid-Body Pendulumhttps://cdn.discordapp.com/attachments/907387756869730374/914016674573856788/unknown.png
 theta_crb = Q0*cos((6^(1/2)*g^(1/2)*t*(m_arm + 2*m_bob)^(1/2)*(m_arm + 3*m_bob)^(1/2))/(L^(1/2)*(2*m_arm + 6*m_bob)));
 pos_crb = [L*sind(theta_crb), -L*cosd(theta_crb)];
 vel_crb = diff(pos_crb)/dT;

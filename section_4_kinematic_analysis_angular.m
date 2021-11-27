@@ -8,17 +8,19 @@ clear all;%Clears all variables that may be stored in the 'workspace'
 close all;%Closes all plots that may be open
 clc;%Clears command window
 
-startTime = 0;
-endTime = 60;
-dT = 0.1;
-
 g = 9.81; %gravity
 Q0 = 15; %Initial theta
 L = 1 + 0.0762/2; %Length of pendulum + length of bob/2 (length to COM)
 m_arm = 0.307;
 m_bob = 0.210;
 
+startTime = 0;
+endTime = 60;
+dT = 0.1;
 t=[startTime:dT:endTime]';
+
+
+
 
 % 4.2 Angular Displacement, Velocity, and Acceleration
 % Simple pendulum
