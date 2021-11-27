@@ -12,8 +12,8 @@ L = 1 + 0.0762/2; %Length of pendulum + length of bob/2 (length to COM)
 m_arm = 0.307;
 m_bob = 0.210;
 w = 0.02;
-w_b = 0.05;
-h_b = 0.05;
+w_b = 0.1;
+h_b = 0.1;
 
 t=[startTime:dT:endTime]';
 
